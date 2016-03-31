@@ -1,0 +1,32 @@
+<!-- 里面配置
+每一个文件名对应的参数
+1.名称
+2.转动/移动
+3.颜色
+3.DH参数表 
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<robot>
+	<link>
+		<fileName>
+			
+		</fileName>
+		<type>
+
+		</type>
+		<color>
+			<r>
+			</r>
+			<g>
+			</g>
+			<b>
+			</b>
+		</color>
+		<DHParametes>
+			<alpha></alpha>
+			<A></A>
+			<theta></theta>
+			<D></D>
+		</DHParametes>
+	</link>
+</robot>
