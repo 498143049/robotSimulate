@@ -1,32 +1,133 @@
-<!-- 里面配置
-每一个文件名对应的参数
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 里面配置每一个文件名对应的参数
 1.名称
-2.转动/移动
+2.转动/移动/基座
 3.颜色
 3.DH参数表 
+4.运动极限值
 -->
-<?xml version="1.0" encoding="UTF-8"?>
+<!--     DH参数表
+          A   alpha   D    theta     RANGE
+linkone   0     0     d1   theta     0~360
+linktwo   L1    0     0    theta     0~360
+linktree  L2    0    d+40    0  	 -215~0
+linkfour  0     0     0    theta     0~360
+其中    d1=285 L1=250  L2=270 
+-->
 <robot>
 	<link>
 		<fileName>
-			
+			buttom.stl
 		</fileName>
 		<type>
-
+			base
 		</type>
 		<color>
-			<r>
-			</r>
-			<g>
-			</g>
-			<b>
-			</b>
+			<r>53</r>
+			<g>92</g>
+			<b>168</b>
 		</color>
 		<DHParametes>
-			<alpha></alpha>
-			<A></A>
-			<theta></theta>
-			<D></D>
+			<alpha>0</alpha>
+			<A>0</A>
+			<theta>0</theta>
+			<D>0</D>
 		</DHParametes>
+		<RANGE>
+			<min>0</min>
+			<max>0</max>
+		</RANGE>
+	</link>
+	<link>
+		<fileName>
+			linkone1.stl
+		</fileName>
+		<type>
+			rotating
+		</type>
+		<color>
+			<r>0</r>
+			<g>182</g>
+			<b>193</b>
+		</color>
+		<DHParametes>
+		    <A>0</A>
+			<alpha>0</alpha>
+			<D>285</D>
+			<theta>0</theta>
+		</DHParametes>
+		<RANGE>
+			<min>0</min>
+			<max>360</max>
+	  	</RANGE>
+	</link>
+	<link>
+		<fileName>
+			linktwo2.stl
+		</fileName>
+		<type>
+			rotating
+		</type>
+		<color>
+			<r>1</r>
+			<g>188</g>
+			<b>143</b>
+		</color>
+		<DHParametes>
+		    <A>250</A>
+			<alpha>0</alpha>
+			<D>0</D>
+			<theta>0</theta>
+		</DHParametes>
+		<RANGE>
+			<min>0</min>
+			<max>360</max>
+	  	</RANGE>
+	</link>
+	<link>
+		<fileName>
+			linktree3.stl
+		</fileName>
+		<type>
+			translation
+		</type>
+		<color>
+			<r>154</r>
+			<g>66</g>
+			<b>150</b>
+		</color>
+		<DHParametes>
+		    <A>270</A>
+			<alpha>0</alpha>
+			<D>40</D>
+			<theta>0</theta>
+		</DHParametes>
+		<RANGE>
+			<min>-215</min>
+			<max>0</max>
+	  	</RANGE>
+	</link>
+	<link>
+		<fileName>
+			linkfour4.stl
+		</fileName>
+		<type>
+			rotating
+		</type>
+		<color>
+			<r>230</r>
+			<g>140</g>
+			<b>226</b>
+		</color>
+		<DHParametes>
+		    <A>0</A>
+			<alpha>0</alpha>
+			<D>0</D>
+			<theta>0</theta>
+		</DHParametes>
+		<RANGE>
+			<min>0</min>
+			<max>360</max>
+	  	</RANGE>
 	</link>
 </robot>
