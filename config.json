@@ -1,0 +1,131 @@
+//  里面配置每一个文件名对应的参数
+// 1.名称
+// 2.转动/移动/基座
+// 3.颜色
+// 3.DH参数表 
+// 4.运动极限值
+// -->
+// <!--     DH参数表
+//           A   alpha   D    theta     RANGE
+// linkone   0     0     d1   theta     0~360
+// linktwo   L1    0     0    theta     0~360
+// linktree  L2    0    d+40    0     -215~0
+// linkfour  0     0     0    theta     0~360
+// 其中    d1=285 L1=250  L2=270 
+{
+  "robot": {
+    "link": [
+      {
+        "fileName": "buttom.stl",
+        "type": "base",
+        "color": {
+          "r": "53",
+          "g": "92",
+          "b": "168"
+        },
+        "DHParametes": {
+          "alpha": "0",
+          "A": "0",
+          "theta": "0",
+          "D": "0"
+        },
+        "RANGE": {
+          "min": "0",
+          "max": "0"
+        }
+      },
+      {
+        "fileName": "
+			linkone1.stl
+		",
+        "type": "
+			rotating
+		",
+        "color": {
+          "r": "0",
+          "g": "182",
+          "b": "193"
+        },
+        "DHParametes": {
+          "A": "0",
+          "alpha": "0",
+          "D": "285",
+          "theta": "0"
+        },
+        "RANGE": {
+          "min": "0",
+          "max": "360"
+        }
+      },
+      {
+        "fileName": "
+			linktwo2.stl
+		",
+        "type": "
+			rotating
+		",
+        "color": {
+          "r": "1",
+          "g": "188",
+          "b": "143"
+        },
+        "DHParametes": {
+          "A": "250",
+          "alpha": "0",
+          "D": "0",
+          "theta": "0"
+        },
+        "RANGE": {
+          "min": "0",
+          "max": "360"
+        }
+      },
+      {
+        "fileName": "
+			linktree3.stl
+		",
+        "type": "
+			translation
+		",
+        "color": {
+          "r": "154",
+          "g": "66",
+          "b": "150"
+        },
+        "DHParametes": {
+          "A": "270",
+          "alpha": "0",
+          "D": "40",
+          "theta": "0"
+        },
+        "RANGE": {
+          "min": "-215",
+          "max": "0"
+        }
+      },
+      {
+        "fileName": "
+			linkfour4.stl
+		",
+        "type": "
+			rotating
+		",
+        "color": {
+          "r": "230",
+          "g": "140",
+          "b": "226"
+        },
+        "DHParametes": {
+          "A": "0",
+          "alpha": "0",
+          "D": "0",
+          "theta": "0"
+        },
+        "RANGE": {
+          "min": "0",
+          "max": "360"
+        }
+      }
+    ]
+  }
+}
