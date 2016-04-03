@@ -1,0 +1,15 @@
+<!-- 里面配置每一个文件名对应的参数
+1.名称
+2.转动/移动/基座
+3.颜色
+3.DH参数表 
+4.运动极限值
+-->
+<!--     DH参数表
+          A   alpha   D    theta     RANGE
+linkone   0     0     d1   theta     0~360
+linktwo   L1    0     0    theta     0~360
+linktree  L2    0    d+40    0  	 -215~0
+linkfour  0     0     0    theta     0~360
+其中    d1=285 L1=250  L2=270 
+-->
