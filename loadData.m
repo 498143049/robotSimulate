@@ -5,8 +5,7 @@
 %                    4.颜色  
 %                    5.DH参数
 %                    6.极限值
-function data = loadData()
-	 path='config.json';
+function data = loadData(path)
 	 fid = fopen(path,'rt');
 	 inString = fscanf(fid,'%c');
 	 fclose(fid);
