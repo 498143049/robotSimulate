@@ -67,7 +67,17 @@ function slider_button_press(obj,evnt,num1,sobj)
 
 function edit_button_press(obj,evnt,num1,sobj)
 	global robot
-	% set(sobj,'Value',get())
+	 handles = getappdata(0,'t_slider');
+  % errordlg(['Minimum limit is ',num2str(num1),' degrees, using ',num2str(get(obj,'Value')),'.'],'Bad Input','modal')
+  if strcmpi(robot.robot.link{1, num1}.type,'rotating') 
+    arry=linspace(robot.robot.link{1, num1}.DHParametes.theta,str2double(get(obj,'String')),10);
+    set(handles(sobj),'Value',str2double(get(obj,'String')))
+    ChaneArray(arry,num1,1);
+  else
+    arry=linspace(robot.robot.link{1, num1}.DHParametes.D,str2double(get(obj,'String')),10);
+    set(handles(sobj),'Value',str2double(get(obj,'String')))
+    ChaneArray(arry,num1,0);
+  end
 %    根据通过robot设置的DH参数。
 %     进行DH的坐标运算
 function caculate()
@@ -122,7 +132,8 @@ function ChaneArray(arry,num1,kind)
     caculate();
     change();
     pause(0.05);
-  end 
+  end
+   
 function [hout,ax_out] = uibutton(varargin)
         %uibutton: Create pushbutton with more flexible labeling than uicontrol.
         % Usage:
