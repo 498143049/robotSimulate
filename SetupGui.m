@@ -42,6 +42,25 @@ function  Loadfile(hObject, ~)
 	t1_edit(i) = uicontrol(K_p,'unit','normalized','style','edit','String',0,'callback',{@edit_button_press,robot.robot.Actionjoint(i),i},'Position',[0.85 0.8-0.2*(i-1) 0.1 0.1]); 
     t1_text(i) = uibutton(K_p,'unit','normalized','style','text','String',['\theta_',char(i+'0')],'Position',[0.75 0.8-0.2*(i-1) 0.1 0.1]); 
   end
+  %增加逆运动学面板
+  Load_button = uicontrol(K_N,'Style','pushbutton','Unit','normalized','Position',[0.3 0.05 0.4 0.2],'String','Start');
+
+  uicontrol(K_N,'unit','normalized','style','text','String','setting','Position',[0 0.35 0.2 0.2],'FontSize',13); 
+  uicontrol(K_N,'unit','normalized','style','text','String','X:','Position',[0.20 0.35 0.1 0.2],'FontSize',11); 
+  KN_editnow(1) = uicontrol(K_N,'unit','normalized','style','edit','String',0,'Position',[0.3 0.40 0.15 0.2],'FontSize',13); 
+  uicontrol(K_N,'unit','normalized','style','text','String','Y:','Position',[0.45 0.35 0.1 0.2],'FontSize',11); 
+  KN_editnow(2) = uicontrol(K_N,'unit','normalized','style','edit','String',0,'Position',[0.55 0.40 0.15 0.2],'FontSize',13); 
+  uicontrol(K_N,'unit','normalized','style','text','String','Z:','Position',[0.70 0.35 0.1 0.2],'FontSize',11); 
+  KN_editnow(3) = uicontrol(K_N,'unit','normalized','style','edit','String',0,'Position',[0.8 0.40 0.15 0.2],'FontSize',13); 
+
+  uicontrol(K_N,'unit','normalized','style','text','String','Crruent','Position',[0 0.7 0.2 0.2],'FontSize',13); 
+  uicontrol(K_N,'unit','normalized','style','text','String','X:','Position',[0.20 0.7 0.1 0.2],'FontSize',11);
+  KN_editold(1) = uicontrol(K_N,'unit','normalized','style','text','String',0,'Position',[0.3 0.7 0.15 0.2],'FontSize',13); 
+  uicontrol(K_N,'unit','normalized','style','text','String','Y:','Position',[0.45 0.7 0.1 0.2],'FontSize',11); 
+  KN_editold(2) = uicontrol(K_N,'unit','normalized','style','text','String',0,'Position',[0.55 0.7 0.15 0.2],'FontSize',13); 
+  uicontrol(K_N,'unit','normalized','style','text','String','Z:','Position',[0.70 0.7 0.1 0.2],'FontSize',11); 
+  KN_editold(3) = uicontrol(K_N,'unit','normalized','style','text','String',0,'Position',[0.8 0.7 0.15 0.2],'FontSize',13); 
+
   setappdata(0,'t_slider',t_slider);  %保存其句柄的值
   setappdata(0,'t1_edit',t1_edit);    %编辑句柄
   %%%增加值
@@ -71,11 +90,11 @@ function edit_button_press(obj,evnt,num1,sobj)
   % errordlg(['Minimum limit is ',num2str(num1),' degrees, using ',num2str(get(obj,'Value')),'.'],'Bad Input','modal')
   if strcmpi(robot.robot.link{1, num1}.type,'rotating') 
     arry=linspace(robot.robot.link{1, num1}.DHParametes.theta,str2double(get(obj,'String')),10);
-    set(handles(sobj),'Value',str2double(get(obj,'String')))
+    set(handles(sobj),'Value',str2double(get(obj,'String')));
     ChaneArray(arry,num1,1);
   else
     arry=linspace(robot.robot.link{1, num1}.DHParametes.D,str2double(get(obj,'String')),10);
-    set(handles(sobj),'Value',str2double(get(obj,'String')))
+    set(handles(sobj),'Value',str2double(get(obj,'String')));
     ChaneArray(arry,num1,0);
   end
 %    根据通过robot设置的DH参数。
@@ -132,8 +151,7 @@ function ChaneArray(arry,num1,kind)
     caculate();
     change();
     pause(0.05);
-  end
-   
+  end 
 function [hout,ax_out] = uibutton(varargin)
         %uibutton: Create pushbutton with more flexible labeling than uicontrol.
         % Usage:
