@@ -27,15 +27,15 @@ function  Loadfile(hObject, ~)
 
   %create a pannel to contain it 
   % Kinematics Panel
-  K_DH = uipanel(gcf,'units','normalized','Position',[0.7 0.75 0.2 0.2],'Title','Dhparametes','FontSize',11);
-  K_p = uipanel(gcf,'units','normalized','Position',[0.7 0.40 0.2 0.3],'Title','Kinematics','FontSize',11);
-  K_N = uipanel(gcf,'units','normalized','Position',[0.7 0.1 0.2 0.25],'Title','N Kinematics','FontSize',11);
+  % K_DH = uipanel(gcf,'units','normalized','Position',[0.7 0.75 0.2 0.2],'Title','Dhparametes','FontSize',11);
+  K_p = uipanel(gcf,'units','normalized','Position',[0.7 0.65 0.2 0.3],'Title','Kinematics','FontSize',11);
+  K_N = uipanel(gcf,'units','normalized','Position',[0.7 0.35 0.2 0.25],'Title','N Kinematics','FontSize',11);
   filedsName=fieldnames(robot.robot.link{1, 2}.DHParametes);
   for i=1:robot.robot.ActionjointNum 
   	%%生成DH参数
-    for j=1:4
-    Dh(i,j)=uicontrol(K_DH,'unit','normalized','style','text','String', getfield(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes,char(filedsName(j))),'Position',[0.05+0.25*(j-1) 0.8-0.25*(i-1) 0.15 0.15],'FontSize',11); 
-	end
+ %    for j=1:4
+ %    Dh(i,j)=uicontrol(K_DH,'unit','normalized','style','text','String', getfield(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes,char(filedsName(j))),'Position',[0.05+0.25*(j-1) 0.8-0.25*(i-1) 0.15 0.15],'FontSize',11); 
+	% end
 	t1_min(i) = uicontrol(K_p,'unit','normalized','style','text','String',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.min,'Position',[0.05 0.8-0.2*(i-1) 0.1 0.1]); 
 	t_slider(i) =uicontrol(K_p,'style','slider','unit','normalized','Max',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.max,'Min',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.min,'Value',0,'SliderStep',[0.05 0.2],'Position',[0.15 0.8-0.2*(i-1) 0.5 0.1],'callback',{@slider_button_press,robot.robot.Actionjoint(i),i});
 	t1_max(i) = uicontrol(K_p,'unit','normalized','style','text','String',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.max,'Position',[0.65 0.8-0.2*(i-1) 0.1 0.1]); 
