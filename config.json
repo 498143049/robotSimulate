@@ -31,7 +31,7 @@
         "DHParametes": {
           "A": 0,
           "alpha": 0,
-          "D": 285,
+          "D": 0,
           "theta": 0
         },
         "RANGE": {
@@ -50,7 +50,7 @@
         "DHParametes": {
           "A": 250,
           "alpha": 0,
-          "D": 40,
+          "D": 305,
           "theta": 0
         },
         "RANGE": {
@@ -88,7 +88,7 @@
         "DHParametes": {
           "A": 0,
           "alpha": 0,
-          "D": 215,
+          "D": 205,
           "theta": 0
         },
         "RANGE": {

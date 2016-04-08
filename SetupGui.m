@@ -27,15 +27,15 @@ function  Loadfile(hObject, ~)
 
   %create a pannel to contain it 
   % Kinematics Panel
-  % K_DH = uipanel(gcf,'units','normalized','Position',[0.7 0.75 0.2 0.2],'Title','Dhparametes','FontSize',11);
-  K_p = uipanel(gcf,'units','normalized','Position',[0.7 0.65 0.2 0.3],'Title','Kinematics','FontSize',11);
-  K_N = uipanel(gcf,'units','normalized','Position',[0.7 0.35 0.2 0.25],'Title','N Kinematics','FontSize',11);
+   K_DH = uipanel(gcf,'units','normalized','Position',[0.7 0.75 0.2 0.2],'Title','Dhparametes','FontSize',11);
+  K_p = uipanel(gcf,'units','normalized','Position',[0.7 0.4 0.2 0.3],'Title','Kinematics','FontSize',11);
+  K_N = uipanel(gcf,'units','normalized','Position',[0.7 0.1 0.2 0.25],'Title','N Kinematics','FontSize',11);
   filedsName=fieldnames(robot.robot.link{1, 2}.DHParametes);
   for i=1:robot.robot.ActionjointNum 
-  	%%生成DH参数
- %    for j=1:4
- %    Dh(i,j)=uicontrol(K_DH,'unit','normalized','style','text','String', getfield(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes,char(filedsName(j))),'Position',[0.05+0.25*(j-1) 0.8-0.25*(i-1) 0.15 0.15],'FontSize',11); 
-	% end
+  	%生成DH参数
+    for j=1:4
+    Dh(i,j)=uicontrol(K_DH,'unit','normalized','style','text','String', getfield(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes,char(filedsName(j))),'Position',[0.05+0.25*(j-1) 0.8-0.25*(i-1) 0.15 0.15],'FontSize',11); 
+	end
 	t1_min(i) = uicontrol(K_p,'unit','normalized','style','text','String',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.min,'Position',[0.05 0.8-0.2*(i-1) 0.1 0.1]); 
 	t_slider(i) =uicontrol(K_p,'style','slider','unit','normalized','Max',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.max,'Min',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.min,'Value',0,'SliderStep',[0.05 0.2],'Position',[0.15 0.8-0.2*(i-1) 0.5 0.1],'callback',{@slider_button_press,robot.robot.Actionjoint(i),i});
 	t1_max(i) = uicontrol(K_p,'unit','normalized','style','text','String',robot.robot.link{1, robot.robot.Actionjoint(i)}.RANGE.max,'Position',[0.65 0.8-0.2*(i-1) 0.1 0.1]); 
@@ -43,15 +43,15 @@ function  Loadfile(hObject, ~)
     t1_text(i) = uibutton(K_p,'unit','normalized','style','text','String',['\theta_',char(i+'0')],'Position',[0.75 0.8-0.2*(i-1) 0.1 0.1]); 
   end
   %增加逆运动学面板
-  Load_button = uicontrol(K_N,'Style','pushbutton','Unit','normalized','Position',[0.3 0.05 0.4 0.2],'String','Start');
+  Load_button = uicontrol(K_N,'Style','pushbutton','Unit','normalized','Position',[0.3 0.05 0.4 0.2],'String','Start','CallBack',{@Ncaculate});
 
   uicontrol(K_N,'unit','normalized','style','text','String','setting','Position',[0 0.35 0.2 0.2],'FontSize',13); 
   uicontrol(K_N,'unit','normalized','style','text','String','X:','Position',[0.20 0.35 0.1 0.2],'FontSize',11); 
-  KN_editnow(1) = uicontrol(K_N,'unit','normalized','style','edit','String',0,'Position',[0.3 0.40 0.15 0.2],'FontSize',13); 
+  KN_editnow(1) = uicontrol(K_N,'unit','normalized','style','edit','String',500,'Position',[0.3 0.40 0.15 0.2],'FontSize',13); 
   uicontrol(K_N,'unit','normalized','style','text','String','Y:','Position',[0.45 0.35 0.1 0.2],'FontSize',11); 
-  KN_editnow(2) = uicontrol(K_N,'unit','normalized','style','edit','String',0,'Position',[0.55 0.40 0.15 0.2],'FontSize',13); 
+  KN_editnow(2) = uicontrol(K_N,'unit','normalized','style','edit','String',2,'Position',[0.55 0.40 0.15 0.2],'FontSize',13); 
   uicontrol(K_N,'unit','normalized','style','text','String','Z:','Position',[0.70 0.35 0.1 0.2],'FontSize',11); 
-  KN_editnow(3) = uicontrol(K_N,'unit','normalized','style','edit','String',0,'Position',[0.8 0.40 0.15 0.2],'FontSize',13); 
+  KN_editnow(3) = uicontrol(K_N,'unit','normalized','style','edit','String',200,'Position',[0.8 0.40 0.15 0.2],'FontSize',13); 
 
   uicontrol(K_N,'unit','normalized','style','text','String','Crruent','Position',[0 0.7 0.2 0.2],'FontSize',13); 
   uicontrol(K_N,'unit','normalized','style','text','String','X:','Position',[0.20 0.7 0.1 0.2],'FontSize',11);
@@ -61,6 +61,8 @@ function  Loadfile(hObject, ~)
   uicontrol(K_N,'unit','normalized','style','text','String','Z:','Position',[0.70 0.7 0.1 0.2],'FontSize',11); 
   KN_editold(3) = uicontrol(K_N,'unit','normalized','style','text','String',0,'Position',[0.8 0.7 0.15 0.2],'FontSize',13); 
 
+  setappdata(0,'KN_editnow',KN_editnow);
+  setappdata(0,'KN_editold',KN_editold);
   setappdata(0,'t_slider',t_slider);  %保存其句柄的值
   setappdata(0,'t1_edit',t1_edit);    %编辑句柄
   %%%增加值
@@ -77,12 +79,23 @@ function slider_button_press(obj,evnt,num1,sobj)
   if strcmpi(robot.robot.link{1, num1}.type,'rotating') 
     arry=linspace(robot.robot.link{1, num1}.DHParametes.theta,get(obj,'Value'),10);
     set(handles(sobj),'String',get(obj,'Value'))
-    ChaneArray(arry,num1,1);
   else
     arry=linspace(robot.robot.link{1, num1}.DHParametes.D,get(obj,'Value'),10);
     set(handles(sobj),'String',get(obj,'Value'))
-    ChaneArray(arry,num1,0);
   end
+  newarry=[];
+  for i=1:4
+  	if(i==sobj)
+       newarry=[newarry;arry];
+    else
+    if strcmpi(robot.robot.link{1, robot.robot.Actionjoint(i)}.type,'rotating') 
+       newarry=[newarry;repmat(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes.theta,1,10)];
+    else
+    	newarry=[newarry;repmat(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes.D,1,10)];
+    end
+    end
+  end
+  ChaneArray(newarry);
 
 function edit_button_press(obj,evnt,num1,sobj)
 	global robot
@@ -91,19 +104,31 @@ function edit_button_press(obj,evnt,num1,sobj)
   if strcmpi(robot.robot.link{1, num1}.type,'rotating') 
     arry=linspace(robot.robot.link{1, num1}.DHParametes.theta,str2double(get(obj,'String')),10);
     set(handles(sobj),'Value',str2double(get(obj,'String')));
-    ChaneArray(arry,num1,1);
   else
     arry=linspace(robot.robot.link{1, num1}.DHParametes.D,str2double(get(obj,'String')),10);
     set(handles(sobj),'Value',str2double(get(obj,'String')));
-    ChaneArray(arry,num1,0);
   end
+  newarry=[];
+  for i=1:4
+  	if(i==sobj)
+       newarry=[newarry;arry];
+    else
+    if strcmpi(robot.robot.link{1, robot.robot.Actionjoint(i)}.type,'rotating') 
+       newarry=[newarry;repmat(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes.theta,1,10)];
+    else
+    	newarry=[newarry;repmat(robot.robot.link{1, robot.robot.Actionjoint(i)}.DHParametes.D,1,10)];
+    end
+   end
+  end
+  ChaneArray(newarry);
 %    根据通过robot设置的DH参数。
 %     进行DH的坐标运算
+%     其值应该等于其DH参数，然后乘以自己的移动量
 function caculate()
   global robot
    robot.robot.link{1,1}.dot=robot.robot.link{1,1}.v(:,1:3);
    Told=eye(4);                        %生成单位矩阵
-  for i=robot.robot.Actionjoint 
+  for i=robot.robot.Actionjoint
     Told=Told*tmat(robot.robot.link{1, i}.DHParametes);
     robot.robot.link{1,i}.dot=((Told*robot.robot.link{1,i}.v')');
     robot.robot.link{1,i}.dot=robot.robot.link{1,i}.dot(:,1:3);
@@ -115,7 +140,7 @@ function caculate()
  %     sca  cca   -sa  -sa*d
  % T=  ssa  csa   ca    ca*d
  %      0     0    0     1
- %  通过其杆的连续变换，即可以得到结果
+ %  通过其杆的连续变换，即可以得到结果 这是改进式的DH参数
 function T = tmat(Dhparametes)
         Dhparametes.alpha = Dhparametes.alpha*pi/180;   
         Dhparametes.theta = Dhparametes.theta*pi/180;    
@@ -124,7 +149,6 @@ function T = tmat(Dhparametes)
         ca = cos(Dhparametes.alpha);
         sa = sin(Dhparametes.alpha);
         T = [c -s 0 Dhparametes.A; s*ca c*ca -sa -sa*Dhparametes.D; s*sa c*sa ca ca*Dhparametes.D; 0 0 0 1]; 
-
 function ans =draw()
   global robot
   for i=1:length(robot.robot.link) 
@@ -140,18 +164,34 @@ function  change()
   for i=robot.robot.Actionjoint
     set(handles(i),'vertices',robot.robot.link{1,i}.dot);
   end
-function ChaneArray(arry,num1,kind)
+function ChaneArray(arry)
   global robot
   for i=1:length(arry)
-    if kind 
-      robot.robot.link{1, num1}.DHParametes.theta=arry(i);
-    else
-      robot.robot.link{1, num1}.DHParametes.D=arry(i);
-    end 
+  	for j=1:4
+     if strcmpi(robot.robot.link{1, robot.robot.Actionjoint(j)}.type,'rotating')  
+   	     robot.robot.link{1, robot.robot.Actionjoint(j)}.DHParametes.theta=arry(j,i);
+     else
+         robot.robot.link{1, robot.robot.Actionjoint(j)}.DHParametes.D=arry(j,i);
+     end 
+   	end
     caculate();
     change();
     pause(0.05);
   end 
+ function Ncaculate(~,~)
+   setValue=getappdata(0,'KN_editnow');
+   % ans=Nscarath(str2double(get(setValue(1),'String')),str2double(get(setValue(2),'String')),str2double(get(setValue(3),'String')));
+   if
+   arry=linspace(robot.robot.link{1, num1}.DHParametes.D,str2double(get(obj,'String')),10);
+function  [a,b,c,d]=Nscarath(x,y,z)
+	global robot;
+	A=(250^2-270^2+x^2+y^2)/(2*250*sqrt(x^2+y^2));
+	G=atand(x/y);
+	a=G-atand(A/sqrt(1-A^2));
+	r=sqrt(x^2+y^2);
+	b=acosd((r*sind(a+G)-250)/270);
+	c=100-z;
+	d=0; 
 function [hout,ax_out] = uibutton(varargin)
         %uibutton: Create pushbutton with more flexible labeling than uicontrol.
         % Usage:
