@@ -178,20 +178,35 @@ function ChaneArray(arry)
     change();
     pause(0.05);
   end 
+ % 获取其中三个参数的值
  function Ncaculate(~,~)
+   global robot;
    setValue=getappdata(0,'KN_editnow');
+   x=str2double(get(setValue(1),'String'));
+   y=str2double(get(setValue(2),'String'));
+   z=str2double(get(setValue(3),'String'));
+   theta1=Nscarath(x,y,z);
+   arry=ones(4,10);
+   for i=1:3
+   	 if strcmpi(robot.robot.link{1, robot.robot.Actionjoint(i)}.type,'rotating')  
+   	    arry(i,:)=linspace(robot.robot.link{1,robot.robot.Actionjoint(i)}.DHParametes.theta,theta1(i),10);
+     else
+     	arry(i,:)=linspace(robot.robot.link{1,robot.robot.Actionjoint(i)}.DHParametes.D,theta1(i),10);
+     end 
+   end
+   arry(4,:)=repmat(robot.robot.link{1, 5}.DHParametes.theta,1,10);
+   ChaneArray(arry); 
    % ans=Nscarath(str2double(get(setValue(1),'String')),str2double(get(setValue(2),'String')),str2double(get(setValue(3),'String')));
-   if
-   arry=linspace(robot.robot.link{1, num1}.DHParametes.D,str2double(get(obj,'String')),10);
-function  [a,b,c,d]=Nscarath(x,y,z)
+   % if
+   % 
+function  A =Nscarath(x,y,z)
 	global robot;
-	A=(250^2-270^2+x^2+y^2)/(2*250*sqrt(x^2+y^2));
+	A(1)=(250^2-270^2+x^2+y^2)/(2*250*sqrt(x^2+y^2));
 	G=atand(x/y);
 	a=G-atand(A/sqrt(1-A^2));
 	r=sqrt(x^2+y^2);
-	b=acosd((r*sind(a+G)-250)/270);
-	c=100-z;
-	d=0; 
+	A(2)=acosd((r*sind(a+G)-250)/270);
+	A(3)=100-z;
 function [hout,ax_out] = uibutton(varargin)
         %uibutton: Create pushbutton with more flexible labeling than uicontrol.
         % Usage:
