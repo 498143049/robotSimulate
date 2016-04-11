@@ -206,7 +206,7 @@ function  A =Nscarath(x,y,z)
 	a=G-atand(A/sqrt(1-A^2));
 	r=sqrt(x^2+y^2);
 	A(2)=acosd((r*sind(a+G)-250)/270);
-	A(3)=100-z;
+	A(3)=92-z;
 function [hout,ax_out] = uibutton(varargin)
         %uibutton: Create pushbutton with more flexible labeling than uicontrol.
         % Usage:
