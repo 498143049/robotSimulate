@@ -1,0 +1,6 @@
+syms x y z
+robot=loadData('config.json')
+robot.link{1, 2}.DHParametes.theta=x;
+robot.link{1, 3}.DHParametes.theta=y;
+robot.link{1, 4}.DHParametes.D=z;
+xyz=tmat(robot.link{1, 2}.DHParametes)*tmat(robot.link{1, 3}.DHParametes)*tmat(robot.link{1, 4}.DHParametes)*tmat(robot.link{1, 5}.DHParametes)
