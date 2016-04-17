@@ -1,5 +1,4 @@
 {
-  "robot": {
     "link": [
       {
         "fileName": "buttom.stl",
@@ -96,8 +95,8 @@
           "max": 180
         }
       }
-    ]
-  }
+    ],
+    "RobotName": "Scara"
 }
 
 //  里面配置每一个文件名对应的参数
