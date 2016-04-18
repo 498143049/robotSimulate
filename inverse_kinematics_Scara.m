@@ -1,4 +1,3 @@
-
 function [A,status] =inverse_kinematics_Scara(x,y,z)
 	global robot;
 	syms a b c; 

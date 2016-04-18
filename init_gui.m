@@ -15,17 +15,26 @@ function init_gui()
    t_slider= getappdata(0,'t_slider');
    t1_edit= getappdata(0,'t1_edit');
    button= getappdata(0,'Load_button');
-  Text=getappdata(0,'h_text');
+   Text=getappdata(0,'h_text');
   for i=1:robot.ActionjointNum 
   	%生成DH参数
   	filedsName=fieldnames(robot.link{1, robot.ActionjointNum(1)}.DHParametes); %get the filed of DH paramets
   	for j=1:length(filedsName)
   	   set(Dh(i,j),'String',getfield(robot.link{1, robot.Actionjoint(i)}.DHParametes,char(filedsName(j))))
 	end
+
 	set(t_slider(i),'Max',robot.link{1, robot.Actionjoint(i)}.RANGE.max,'Min',robot.link{1, robot.Actionjoint(i)}.RANGE.min);
 	set(t1_min(i),'String',robot.link{1, robot.Actionjoint(i)}.RANGE.min);
 	set(t1_max(i),'String',robot.link{1, robot.Actionjoint(i)}.RANGE.max);
-	 %绑定操作函数 slider and edit 
+	%设置默认值
+  if strcmpi(robot.link{1, robot.Actionjoint(i)}.type,'rotating') 
+    set(t_slider(i),'Value',robot.link{1, robot.Actionjoint(i)}.DHParametes.theta);
+    set(t1_edit(i),'String',robot.link{1, robot.Actionjoint(i)}.DHParametes.theta);
+  else
+    set(t_slider(i),'Value',robot.link{1, robot.Actionjoint(i)}.DHParametes.D);
+    set(t1_edit(i),'String',robot.link{1, robot.Actionjoint(i)}.DHParametes.D);
+  end
+  %绑定操作函数 slider and edit 
 	set(t_slider(i),'callback',{@slider_button_press});
 	set(t1_edit(i),'callback',{@edit_button_press});
 	
@@ -37,6 +46,12 @@ function init_gui()
   KN_editold=getappdata(0,'KN_editold');
   for i=1:3
   	set(KN_editold(i),'String',robot.spoint(i));
+  end
+  axis([robot.axis.xmin robot.axis.xmax robot.axis.ymin robot.axis.ymax robot.axis.zmin robot.axis.zmax]);
+  if isfield(robot,'defaultView')
+    view(robot.defaultView.AZ,robot.defaultView.EI);
+  else
+    view(125,25);
   end
 end
 % 绘制函数

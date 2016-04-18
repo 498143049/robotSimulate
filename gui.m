@@ -21,9 +21,10 @@ function gui(num)
   set(h_axes,'position',[0.04,0.04,0.92,0.92]);
   hold on
   daspect([2 2 1])  ;                  % Setting the aspect ratio
-  view(125,25);
   xlabel('X'),ylabel('Y'),zlabel('Z');
-  axis([-500 500 -500 500 0 300]);
+  % axis([-1000 1000 -1000 1000 0 1000]);
+   % axis AUTO 
+
   set(h_axes,'Box','off');
   grid on;
   %calculate pix in order to dynamic arrangement；

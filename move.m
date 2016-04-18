@@ -30,7 +30,7 @@ function ChaneArray(arry)
   global robot
   robot.pointarry=[;;];
   for i=1:length(arry)
-  	for j=1:4
+  	for j=1:robot.ActionjointNum
      if strcmpi(robot.link{1, robot.Actionjoint(j)}.type,'rotating')  
    	     robot.link{1, robot.Actionjoint(j)}.DHParametes.theta=arry(j,i);
      else

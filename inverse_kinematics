@@ -1,0 +1,3 @@
+functuion [A,status]=inverse_kinematics()
+
+end

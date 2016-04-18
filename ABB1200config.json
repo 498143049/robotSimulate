@@ -1,0 +1,151 @@
+{
+    "link": [
+      {
+        "fileName": "ABB1200/base.stl",
+        "type": "base",
+        "color": {
+          "r": 53,
+          "g": 92,
+          "b": 168
+        },
+        "DHParametes": {
+          "alpha": 0,
+          "A": 0,
+          "theta": 0,
+          "D": 0
+
+        },
+        "RANGE": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "fileName": "ABB1200/linkone.stl",
+        "type": "rotating",
+        "color": {
+          "r": 0,
+          "g": 182,
+          "b": 193
+        },
+        "DHParametes": {
+          "A": 0,
+          "alpha": 0,
+          "D": 407,
+          "theta": 0
+        },
+        "RANGE": {
+          "min": -180,
+          "max": 180
+        }
+      },
+      {
+        "fileName": "ABB1200/linktwo.stl",
+        "type": "rotating",
+        "color": {
+          "r": 1,
+          "g": 188,
+          "b": 143
+        },
+        "DHParametes": {
+          "A": 0,
+          "alpha":90,
+          "D": 0,
+          "theta": 90
+        },
+        "RANGE": {
+          "min": 0,
+          "max": 180
+        }
+      },
+      {
+        "fileName": "ABB1200/linkthree.stl",
+        "type": "rotating",
+        "color": {
+          "r": 154,
+          "g": 66,
+          "b": 150
+        },
+        "DHParametes": {
+          "A": 518,
+          "alpha": 0,
+          "D": 0,
+          "theta": 0
+        },
+        "RANGE": {
+          "min": -180,
+          "max": 0
+        }
+      },
+      {
+        "fileName": "ABB1200/linkfour.stl",
+        "type": "rotating",
+        "color": {
+          "r": 230,
+          "g": 140,
+          "b": 226
+        },
+        "DHParametes": {
+          "A": 0,
+          "alpha": -90,
+          "D": 452,
+          "theta": 0
+        },
+        "RANGE": {
+          "min": -180,
+          "max": 180
+        }
+      },
+      {
+        "fileName": "ABB1200/linkfive.stl",
+        "type": "rotating",
+        "color": {
+          "r": 53,
+          "g": 92,
+          "b": 168
+        },
+        "DHParametes": {
+          "A": 0,
+          "alpha":-90,
+          "D":0,
+          "theta": 0
+        },
+        "RANGE": {
+          "min": -90,
+          "max": 90
+        }
+      },
+      {
+        "fileName": "ABB1200/linksix.stl",
+        "type": "rotating",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        "DHParametes": {
+          "A": 0,
+          "alpha": 90,
+          "D": 70,
+          "theta": 0
+        },
+        "RANGE": {
+          "min": -180,
+          "max": 180
+        }
+      }
+    ],
+    "RobotName": "ABB1200",
+       "axis":{
+      "xmax":1000,
+      "xmin":-1000,
+      "ymax":1000,
+      "ymin":-1000,
+      "zmax":1000,
+      "zmin":0
+    },
+     "defaultView":{
+      "AZ":216,
+      "EI":17
+    }
+}

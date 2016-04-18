@@ -1,15 +1,15 @@
 
 function SetupGui
  Main_figure = figure('Name','robot simulink','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
- set(gcf,'menubar','none');
+ % set(gcf,'menubar','none');
 % add button to load file
 Load_button = uicontrol(gcf,'Style','pushbutton','Unit','normalized','Position',[0.3 0.3 0.4 0.4],'String','Load data','CallBack',{@Loadfile});
 function  Loadfile(hObject, ~)
   global robot
-  global Status
+  global Status  %Button status
   Status=0;
-  % [f,p]=uigetfile('*.json','chose one file');
-  robot=loadData('config.json');
+  [f,p]=uigetfile('*.json','chose one file');
+  robot=loadData(f);
   delete (hObject);  %删除LOAD按键
   %开始分析数据   得到有几个可以转动的结构，以及物体的运动范围。动态确定其值
   %开始分析分析出有几个活动关节，以及关节的编号

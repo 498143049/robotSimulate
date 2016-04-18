@@ -1,0 +1,5 @@
+dbg_err_crash() -- continuing from serious error (ORDER_DEBUG).
+dbg_err_crash() -- continuing from serious error (ORDER_DEBUG).
+generate UI traceback and exit
+Generating automatic traceback in C:\Users\Public\Documents\traceback.log...
+Automatic traceback done.
