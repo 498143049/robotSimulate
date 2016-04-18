@@ -97,6 +97,7 @@
       }
     ],
     "RobotName": "Scara",
+    "inversefun":"inverse_kinematics_Scara",
     "axis":{
     	"xmax":500,
     	"xmin":-500,

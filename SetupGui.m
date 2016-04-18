@@ -1,7 +1,7 @@
 
 function SetupGui
  Main_figure = figure('Name','robot simulink','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
- % set(gcf,'menubar','none');
+ set(gcf,'menubar','none');
 % add button to load file
 Load_button = uicontrol(gcf,'Style','pushbutton','Unit','normalized','Position',[0.3 0.3 0.4 0.4],'String','Load data','CallBack',{@Loadfile});
 function  Loadfile(hObject, ~)

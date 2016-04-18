@@ -1,7 +1,7 @@
 
 function gui(num)
   % Main_figure = figure('Name','robot','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
-  % set(gcf,'menubar','none');
+   set(gcf,'menubar','none');
   set(gcf,'Position',[0.05,0.05,0.9,0.9]);  
 
   %create four panel to display four block 

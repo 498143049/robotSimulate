@@ -112,12 +112,17 @@ function inverse_button_press(~,~)
    x=str2double(get(setValue(1),'String'));
    y=str2double(get(setValue(2),'String'));
    z=str2double(get(setValue(3),'String'));
-   [cd,Status]=inverse_kinematics_Scara(x,y,z);
+   if isfield(robot,'inversefun')
+      [cd,Status]=eval([robot.inversefun,'(x,y,z)']);
+   else
+    errordlg('No define function','Wanging');   
+    return;
+    end
    if Status
      move(cd,10);
      UpdatePanle();
    else
-      errordlg('Wanging','There is no Answer！！！');     
+      errordlg('There is no Answer！！！',' Wanging');     
    end
 end
 function Control_button_press(~,~)
