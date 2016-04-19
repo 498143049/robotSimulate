@@ -53,6 +53,9 @@ function init_gui()
   else
     view(125,25);
   end
+  if isfield(robot,'inversefun')
+      eval([robot.inversefun,'(robot.spoint(1),robot.spoint(2),robot.spoint(3))']);
+  end
 end
 % 绘制函数
 function  draw()
