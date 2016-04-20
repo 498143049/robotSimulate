@@ -1,4 +1,4 @@
-% 初始化GUI界面的设置其初始化时通过全局变量ROBOT来实现
+% 初始化GUI界面的设置其初始化时通过全局变量ROBOT来实�?
 %里面也包含函数的绑定
 function init_gui()
    global robot;
@@ -26,7 +26,7 @@ function init_gui()
 	set(t_slider(i),'Max',robot.link{1, robot.Actionjoint(i)}.RANGE.max,'Min',robot.link{1, robot.Actionjoint(i)}.RANGE.min);
 	set(t1_min(i),'String',robot.link{1, robot.Actionjoint(i)}.RANGE.min);
 	set(t1_max(i),'String',robot.link{1, robot.Actionjoint(i)}.RANGE.max);
-	%设置默认值
+	%设置默认�?
   if strcmpi(robot.link{1, robot.Actionjoint(i)}.type,'rotating') 
     set(t_slider(i),'Value',robot.link{1, robot.Actionjoint(i)}.DHParametes.theta);
     set(t1_edit(i),'String',robot.link{1, robot.Actionjoint(i)}.DHParametes.theta);
@@ -54,7 +54,7 @@ function init_gui()
     view(125,25);
   end
   if isfield(robot,'inversefun')
-      eval([robot.inversefun,'(robot.spoint(1),robot.spoint(2),robot.spoint(3))']);
+      eval([robot.inversefun,'(robot.spoint(1),robot.spoint(2),robot.spoint(3))',';']);
   end
 end
 % 绘制函数
@@ -69,7 +69,7 @@ function  draw()
 end
 %更新界面操作
 function UpdatePanle()
- %更新显示DH参数面板 和正运动学面板
+ %更新显示DH参数面板 和正运动学面�?
  global robot;
  Dh= getappdata(0,'Dh');
  t_slider= getappdata(0,'t_slider');
@@ -91,7 +91,7 @@ function UpdatePanle()
   	set(KN_editold(i),'String',robot.spoint(i));
   end
 end
-%滑块滑动的手的标签
+%滑块滑动的手的标�?
 function slider_button_press(obj,evnt)
   global robot
   t_slider= getappdata(0,'t_slider');
@@ -100,7 +100,7 @@ function slider_button_press(obj,evnt)
   move(Target,10);
   UpdatePanle();
 end
-%按键程序的绑定
+%按键程序的绑�?
 function edit_button_press(obj,evnt)
 	global robot
 	t1_edit= getappdata(0,'t1_edit');
@@ -125,7 +125,7 @@ function inverse_button_press(~,~)
      move(cd,10);
      UpdatePanle();
    else
-      errordlg('There is no Answer！！！',' Wanging');     
+      errordlg('There is no Answer,','Wanging');     
    end
 end
 function Control_button_press(~,~)

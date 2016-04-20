@@ -1,54 +1,42 @@
-function [A,status] =inverse_kinematics_Scara(x,y,z)
+%函数同解
+%直接给出公式：公式推导如胡杰 等：基于 SCARA 机器人的运动学分析及关节解耦  所示。
+%其中的解决办法就是根据syms开始分析，得到其特解
+function [A,status]=inverse_kinematics_Scara(x,y,z)
 	global robot;
-	syms a b c; 
-	mem=robot.link{1, 2}.DHParametes;
-	mem.theta=a;
-	mem2=robot.link{1, 3}.DHParametes;
-	mem2.theta=b;
-	mem3=robot.link{1, 4}.DHParametes;
-	mem3.D=c;
-	xyz=tmat_in(mem)*tmat_in(mem2)*tmat_in(mem3)*tmat_in(robot.link{1, 5}.DHParametes);
-	eq1=xyz(1,4)==x;
-	eq2=xyz(2,4)==y;
-	eq3=xyz(3,4)==z;
-	solx=solve(eq1,eq2,eq3,a,b,c,'Real',true);
+	c1=250;
+	c2=270;
+	status=1;
 	A=[0,0,0,0];
-	if(length(solx)==0)
-		status=0;
-    elseif(length(solx.a)==1)
-        status=1;
-        A(1)=subs(solx.a)*180/pi;
-        A(2)=subs(solx.b)*180/pi;
-        A(3)=subs(solx.c);
-		A(4)=0;
-       if(A(3)>0 || A(3)<-175)
-           status=0;
-            return;
-        end
-    elseif(length(solx.a)==2) 
-		status=1;
-        Value=subs(solx.a);
-        OldValue=robot.link{1, 2}.DHParametes.theta;
-        if abs(Value(1)-OldValue)<abs(Value(2)-OldValue)
-            A(1)=subs(solx.a(1))*180/pi;
-            A(2)=subs(solx.b(1))*180/pi;
-            A(3)=subs(solx.c(1));
-        else
-            A(1)=subs(solx.a(2))*180/pi;
-            A(2)=subs(solx.b(2))*180/pi;
-            A(3)=subs(solx.c(2));
-        end
-        if(A(3)>0 || A(3)<-175)
-           status=0;
-            return;
-        end
+	temp1=305-205-z; %检测Z值； %检测实数范围内;
+	if(temp1>0 ||temp1<-175)
+        status=0;
+        return;
     end
-end
 
- function T = tmat_in(Dhparametes)
-  c = cos(Dhparametes.theta);
-  s = sin(Dhparametes.theta);
-  ca = cosd(Dhparametes.alpha);
-  sa = sind(Dhparametes.alpha);
-  T = [c -s 0 Dhparametes.A; s*ca c*ca -sa -sa*Dhparametes.D; s*sa c*sa ca ca*Dhparametes.D; 0 0 0 1]; 
+	value=(x^2+y^2-c1^2-c2^2)/(2*c1*c2);   %由于其角度是150so其最大值不超过0.8660根号好2/2
+	if(value<cosd(150)||value>1)
+		status=0;
+        return;
+    end
+	temp2_1=acosd(value);
+
+	C=(250+270*value)/sqrt(x^2+y^2);
+	if(C>1||C<-1)
+		status=0;
+        return;
+	end
+	temp3_1=asind(C)-atand(x/y);   %第一组解
+	%第二组
+	temp2_2=-temp2_1;
+	temp3_2=180-asind(C)-atand(x/y);
+	OldValue=robot.link{1, robot.Actionjoint(1)}.DHParametes.theta;
+	if abs(temp3_1-OldValue)<abs(temp3_2-OldValue)
+      A(1)=temp3_1;
+      A(2)=temp2_1;
+      A(3)=temp1;
+    else
+       A(1)=temp3_2;
+       A(2)=temp2_2;
+       A(3)=temp1;
+     end
 end

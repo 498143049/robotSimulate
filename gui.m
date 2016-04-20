@@ -1,7 +1,7 @@
 
 function gui(num)
   % Main_figure = figure('Name','robot','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
-   set(gcf,'menubar','none');
+   % set(gcf,'menubar','none');
   set(gcf,'Position',[0.05,0.05,0.9,0.9]);  
 
   %create four panel to display four block 
@@ -23,7 +23,7 @@ function gui(num)
   daspect([2 2 1])  ;                  % Setting the aspect ratio
   xlabel('X'),ylabel('Y'),zlabel('Z');
   % axis([-1000 1000 -1000 1000 0 1000]);
-   % axis AUTO 
+   % axis AUTO
 
   set(h_axes,'Box','off');
   grid on;
@@ -49,7 +49,7 @@ function gui(num)
     t1_edit(i) = uicontrol(K_p,'FontUnits','normalized','unit','normalized','style','edit','String',0,'Position',[0.805 0.95-(blankpix)*(i-1)-pix*i 0.18 pix],'FontSize',0.5,'BackgroundColor','white');  
   end
    %select axes part
-   axes(h_axes);                            % add a default light
+   axes(h_axes);                            
    %inverse kinematics
    Load_button = uicontrol(K_N,'FontUnits','normalized','Style','pushbutton','Unit','normalized','Position',[0.3 0.05 0.4 0.15],'String','Start','FontSize',0.8,'BackgroundColor',[0.2745    0.5608    0.8706],'ForegroundColor','white');
    uicontrol(K_N,'FontUnits','normalized','unit','normalized','style','text','String','Crruent','Position',[0 0.805 1 0.12],'FontSize',0.8,'ForegroundColor',[0.1333 0.2627 0.3922],'BackgroundColor','white'); 
