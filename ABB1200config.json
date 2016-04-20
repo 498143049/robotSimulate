@@ -126,7 +126,7 @@
         "DHParametes": {
           "A": 0,
           "alpha": 90,
-          "D": 70,
+          "D": 0,
           "theta": 0
         },
         "RANGE": {
