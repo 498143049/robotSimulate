@@ -2,6 +2,7 @@
 ###Introduce
 *		Developing Simple manipulator kinematics simulation system in matlab R2012b
 *		**the developed functions contain kinematics 、inverse kinematics、Planning path、the show of graphics、route shows**
+
 ###Characteristic
    1.	Program and data are separated，so,when you simulate new one ,only add data and config file which is describes the data attribute 。so the program is high scalability
    2.	Program is designed adopted MVC design ideas。
@@ -56,6 +57,7 @@ x,y,z：the set coordinate value
 ###简介
 *	开发出一个简易运动学仿真系统，其中测试、开发的matlab版本号为R2012b。
 *   **实现的功能有运动学，逆运动学、轨迹规划、图形展示、轨迹显示**。
+
 ###特点:
    1.	程序是和数据分离的，因此，只要加入数据文件，仿真机器人只要有json描述，符合程序的接口即可。可以定制性很高
    2.	程序设计采用的MVC的设计思想。
