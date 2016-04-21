@@ -2,6 +2,18 @@
 %直接给出公式：公式推导如胡杰 等：基于 SCARA 机器人的运动学分析及关节解耦  所示。
 %其中的解决办法就是根据syms开始分析，得到其特解
 function [A,status]=inverse_kinematics_Scara(x,y,z)
+% it gets joint value 
+%
+% Example:
+% 
+% inverse_kinematics_Scara(x,y,z)
+%  x,y,z the coordinate point 
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-21: Complete
 	global robot;
 	c1=250;
 	c2=270;

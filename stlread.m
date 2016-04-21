@@ -10,7 +10,18 @@
 % 三角面片的最后2个字节用来描述三角面片的属性信息。
 % 一个完整二进制STL文件的大小为三角形面片数乘以 50再加上84个字节。
 function [v, f,numFaces] = stlread(filename)
-
+% it is read STl files
+%
+% Example:
+%  stlread(path)
+% the path of file
+%
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-21: Complete
 fid=fopen(filename, 'r');  %打开STL文件并且程序只是读取二进制格式
 if fid == -1 
     error('File could not be opened, check name or path.')

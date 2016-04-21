@@ -33,7 +33,7 @@ function [A,status]=inverse_kinematics_Abb1200(x,y,z)
 	end
 
 	%保证其中之二的维度
-	d2=((z*cosd(t2)) - (407*cosd(t2)) - (x*cosd(t1)*sind(t2)) - (y*sind(t1)*sind(t2)))/452;
+	d2=((z*cosd(t2)) - (407* m(t2)) - (x*cosd(t1)*sind(t2)) - (y*sind(t1)*sind(t2)))/452;
 
 	if(d2<-1||d2>1)
 	   status=0;
