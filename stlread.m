@@ -16,7 +16,7 @@ if fid == -1
     error('File could not be opened, check name or path.')
 end
 
-ftitle=fread(fid,80,'uchar=>schar'); % Read file title
+fread(fid,80,'uchar=>schar'); % Read file title  unuse but it continue to read
 numFaces=fread(fid,1,'int32'); % Read number of Faces
 
 T = fread(fid,inf,'uint8=>uint8'); % read the remaining values

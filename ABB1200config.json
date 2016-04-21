@@ -136,6 +136,7 @@
       }
     ],
     "RobotName": "ABB1200",
+    "inversefun":"inverse_kinematics_Abb1200",
        "axis":{
       "xmax":1000,
       "xmin":-1000,

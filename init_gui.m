@@ -1,8 +1,7 @@
-% 初始化GUI界面的设置其初始化时通过全局变量ROBOT来实�?
-%里面也包含函数的绑定
+
 function init_gui()
    global robot;
-   %修改标题
+
    handles = getappdata(0,'picAxes');
    set(handles,'String',[robot.RobotName,'   robot']);
    %create Pic pannel
@@ -17,16 +16,14 @@ function init_gui()
    button= getappdata(0,'Load_button');
    Text=getappdata(0,'h_text');
   for i=1:robot.ActionjointNum 
-  	%生成DH参数
   	filedsName=fieldnames(robot.link{1, robot.ActionjointNum(1)}.DHParametes); %get the filed of DH paramets
   	for j=1:length(filedsName)
   	   set(Dh(i,j),'String',getfield(robot.link{1, robot.Actionjoint(i)}.DHParametes,char(filedsName(j))))
-	end
+    end
 
 	set(t_slider(i),'Max',robot.link{1, robot.Actionjoint(i)}.RANGE.max,'Min',robot.link{1, robot.Actionjoint(i)}.RANGE.min);
 	set(t1_min(i),'String',robot.link{1, robot.Actionjoint(i)}.RANGE.min);
 	set(t1_max(i),'String',robot.link{1, robot.Actionjoint(i)}.RANGE.max);
-	%设置默认�?
   if strcmpi(robot.link{1, robot.Actionjoint(i)}.type,'rotating') 
     set(t_slider(i),'Value',robot.link{1, robot.Actionjoint(i)}.DHParametes.theta);
     set(t1_edit(i),'String',robot.link{1, robot.Actionjoint(i)}.DHParametes.theta);
@@ -34,7 +31,6 @@ function init_gui()
     set(t_slider(i),'Value',robot.link{1, robot.Actionjoint(i)}.DHParametes.D);
     set(t1_edit(i),'String',robot.link{1, robot.Actionjoint(i)}.DHParametes.D);
   end
-  %绑定操作函数 slider and edit 
 	set(t_slider(i),'callback',{@slider_button_press});
 	set(t1_edit(i),'callback',{@edit_button_press});
 	
@@ -57,19 +53,17 @@ function init_gui()
       eval([robot.inversefun,'(robot.spoint(1),robot.spoint(2),robot.spoint(3))',';']);
   end
 end
-% 绘制函数
 function  draw()
   global robot
+  L=zeros(length(robot.link));
   for i=1:length(robot.link) 
     L(i)=patch('Faces',robot.link{1,i}.f,'Vertices',robot.link{1,i}.dot,'FaceColor',[robot.link{1,i}.color.r/255    robot.link{1,i}.color.g/255    robot.link{1,i}.color.b/255],'LineStyle','none','SpecularExponent',20);
   end
   H=plot3(0,0,0,'color',[robot.link{1,robot.ActionjointNum}.color.r/255    robot.link{1,robot.ActionjointNum }.color.g/255    robot.link{1,robot.ActionjointNum }.color.b/255],'LineWidth',2);
-  setappdata(0,'patch_h',L); %保存句柄
-  setappdata(0,'plot3',H); %保存句柄
+  setappdata(0,'patch_h',L); 
+  setappdata(0,'plot3',H);
 end
-%更新界面操作
 function UpdatePanle()
- %更新显示DH参数面板 和正运动学面�?
  global robot;
  Dh= getappdata(0,'Dh');
  t_slider= getappdata(0,'t_slider');
@@ -90,19 +84,17 @@ function UpdatePanle()
   for i=1:3
   	set(KN_editold(i),'String',robot.spoint(i));
   end
+  %test
+  %z=robot.spoint(2)*cosd(robot.link{1, 2}.DHParametes.theta)-robot.spoint(1)*sind(robot.link{1, 2}.DHParametes.theta)
 end
-%滑块滑动的手的标�?
-function slider_button_press(obj,evnt)
-  global robot
+function slider_button_press(~,~)
   t_slider= getappdata(0,'t_slider');
   Target=get(t_slider,'Value');
   Target=cell2mat(Target);
   move(Target,10);
   UpdatePanle();
 end
-%按键程序的绑�?
-function edit_button_press(obj,evnt)
-	global robot
+function edit_button_press(~,~)
 	t1_edit= getappdata(0,'t1_edit');
 	Target=get(t1_edit,'String');
 	Target=str2num(char(Target));

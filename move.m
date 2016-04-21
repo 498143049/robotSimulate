@@ -1,34 +1,38 @@
-%移动标志位其中就是输出移动次数，以及目标移动的角度。
-%如果是4个维度则TagetValt=[0,0,0,0] 的形式
-%如果有6个活动关节则为[0,0,0,0,0,0] 的形式
-%其最终目的是改变其点
 function move(TagetValue,time)
-	global robot
-  TagetValue=VerifyValue(TagetValue);
-	arry=ones(robot.ActionjointNum,time);
-	for i=1:robot.ActionjointNum
-	 if strcmpi(robot.link{1, robot.Actionjoint(i)}.type,'rotating')  
-   	    arry(i,:)=linspace(robot.link{1,robot.Actionjoint(i)}.DHParametes.theta,TagetValue(i),time);
-     else
-     	arry(i,:)=linspace(robot.link{1,robot.Actionjoint(i)}.DHParametes.D,TagetValue(i),time);
-     end 
-	end
-	ChaneArray(arry); 
-end
-% Finally.
-function  change()
+% it moved the robot manipulate and control the time 
+%
+% move(TagetValue,time)
+% TargetValue:The seted joint Value
+% Time:Times of division  if you want to get more delicate route ,you must set biger num than older;
+% Example:
+%   move([0,0,0,0],10)
+%
+% NOTE: the length of TagetValue,it depends on Degreed of freedom
+%
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-21: Complete
   global robot
-  handles = getappdata(0,'patch_h'); 
-  for i=robot.Actionjoint
-    set(handles(i),'vertices',robot.link{1,i}.dot);
+  TagetValue=VerifyValue(TagetValue);
+  arry=ones(robot.ActionjointNum,time);
+  for i=1:robot.ActionjointNum
+    if strcmpi(robot.link{1, robot.Actionjoint(i)}.type,'rotating')  
+      arry(i,:)=linspace(robot.link{1,robot.Actionjoint(i)}.DHParametes.theta,TagetValue(i),time);
+    else
+      arry(i,:)=linspace(robot.link{1,robot.Actionjoint(i)}.DHParametes.D,TagetValue(i),time);
+    end
   end
-  H=getappdata(0,'plot3'); 
-  set(H,'XData',robot.pointarry(:,1),'YData',robot.pointarry(:,2),'ZData',robot.pointarry(:,3));
+  ChaneArray(arry);  
 end
 
+
+%deal the oldValue and get set Arry
 function ChaneArray(arry)
   global robot
-  robot.pointarry=[;;];
+  robot.pointarry=[;;]
   for i=1:length(arry)
   	for j=1:robot.ActionjointNum
      if strcmpi(robot.link{1, robot.Actionjoint(j)}.type,'rotating')  
@@ -43,7 +47,18 @@ function ChaneArray(arry)
     pause(0.05);
   end 
  end
- %验证其值
+%update the change of graphical
+ function  change()
+  global robot
+  handles = getappdata(0,'patch_h'); 
+  for i=robot.Actionjoint
+    set(handles(i),'vertices',robot.link{1,i}.dot);
+  end
+  H=getappdata(0,'plot3'); 
+  set(H,'XData',robot.pointarry(:,1),'YData',robot.pointarry(:,2),'ZData',robot.pointarry(:,3));
+end
+
+% it verified the value of jiont  between  the limit values written in config.json 
 function TagetValue=VerifyValue(TagetValue)
   global robot;
   for i=1:robot.ActionjointNum

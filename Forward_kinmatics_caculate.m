@@ -1,3 +1,17 @@
+% it through DH parameter to caculate the set point 
+%
+% Example:
+%  Forward_kinmatics_caculate()
+%
+% NOTE: it use global structures to dynamicly caculate the current postion of link 
+%
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-21: Complete
+
 %    根据通过robot设置的DH参数。
 %     进行DH的坐标运算
 %     其值应该等于其DH参数，然后乘以自己的移动量
