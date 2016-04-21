@@ -41,7 +41,7 @@ stlread.m   Prase stl data  function</code></pre>
 	1.	fileName    the path of file
     2.	type        joint type：base、transfrom、rotate
     3.	DHParametes DH DHParametes ,use improvement method。
-        formula:![formula](http://7xt8mz.com2.z0.glb.clouddn.com/a.jpg)
+        formula:   ![formula](http://7xt8mz.com2.z0.glb.clouddn.com/a.jpg)
     4.	RANGE       the range of joint value </code></pre>
 ####Kinematics Interface
 <pre><code>function [A,status]=yourfuctionName(x,y,z)
@@ -95,7 +95,7 @@ stlread.m   读取STL文件的函数 </code></pre>
 5.	link            关节的属性
 	1.	fileName    文件的路径地址
     2.	type        关节的类别：有基座(base）、转动(transfrom)、旋转(rotate)
-    3.	DHParametes DH参数,采用的是改进式参数。公式如图![公式](http://7xt8mz.com2.z0.glb.clouddn.com/a.jpg)
+    3.	DHParametes DH参数,采用的是改进式参数。公式如图  ![公式](http://7xt8mz.com2.z0.glb.clouddn.com/a.jpg)
     4.	RANGE       关节旋转的范围</code></pre>
 ####逆运动学接口
 <pre><code>function [A,status]=yourfuctionName(x,y,z)
