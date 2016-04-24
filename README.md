@@ -50,6 +50,9 @@ A：set the value of joint if four DOF A=[0,0,0,0] format，6DOF A=[0,0,0,0,0,0]
 status: is exist value;status=1，exist ;status=0，not exist;
 x,y,z：the set coordinate value 
 </code></pre>
+###annotation
+<pre><code>tmat_in.m apply to analyze the special inverse kinematics
+analyze.m apply to analyze the special inverse kinematics</code></pre>
 
 
 
@@ -105,5 +108,5 @@ status: 表示否是解 status=1，有解;status=0，无解;
 x,y,z：给的的坐标值	
 </code></pre>
 ###注释
-<pre><code>  tmat_in.m  产生齐次方程的函数文件，用于分析特殊情况
+<pre><code>tmat_in.m  产生齐次方程的函数文件，用于分析特殊情况
 analyze.m  用于分析特殊解法的函数</code></pre>
