@@ -1,4 +1,16 @@
 function [A,status]=inverse_kinematics_Abb1200(x,y,z)
+% it gets joint value for ABB1200 it use  DH paramets from ABB1200config.json
+%
+% Example:
+% 
+% inverse_kinematics_Abb1200(x,y,z)
+%  x,y,z the coordinate point 
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-24: Complete
 	global robot;
 	status=1;
 	% x=100,y=200,z=800;
