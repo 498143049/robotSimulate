@@ -99,8 +99,11 @@ stlread.m   读取STL文件的函数 </code></pre>
     4.	RANGE       关节旋转的范围</code></pre>
 ####逆运动学接口
 <pre><code>function [A,status]=yourfuctionName(x,y,z)
-end
+end<pre><code>
 A：表示计算出给的关节的值如果是4自由度则为[0,0,0,0]，6自由度为[0,0,0,0,0,0];
 status: 表示否是解 status=1，有解;status=0，无解;
 x,y,z：给的的坐标值	
 </code></pre>
+###注释
+<pre><code>  tmat_in.m  产生齐次方程的函数文件，用于分析特殊情况
+analyze.m  用于分析特殊解法的函数</code></pre>
