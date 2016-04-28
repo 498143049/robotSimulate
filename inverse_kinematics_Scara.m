@@ -2,7 +2,7 @@
 %直接给出公式：公式推导如胡杰 等：基于 SCARA 机器人的运动学分析及关节解耦  所示。
 %其中的解决办法就是根据syms开始分析，得到其特解
 function [A,status]=inverse_kinematics_Scara(x,y,z)
-% it gets joint value 
+% it gets joint value for scara it use  DH paramets from Scaraconfig.json
 %
 % Example:
 % 

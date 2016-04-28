@@ -1,12 +1,25 @@
 function [A,status] =inverse_kinematics(x,y,z)
+% it gets commom slouting to slove 
+%
+% but it waits to complete
+% Example:
+% 
+% inverse_kinematics(x,y,z)
+%  x,y,z the coordinate point 
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-24: Complete
 	global robot;
 	syms a b c; 
-	mem=robot.link{1, 2}.DHParametes;
-	mem.theta=a;
-	mem2=robot.link{1, 3}.DHParametes;
-	mem2.theta=b;
-	mem3=robot.link{1, 4}.DHParametes;
-	mem3.D=c;
+	mem(1)=robot.link{1,robot.Actionjoint(1)}.DHParametes;
+	mem(1).theta=a;
+	mem(2)=robot.link{1,robot.Actionjoint(2)}.DHParametes;
+	mem(2).theta=b;
+	mem(3)=robot.link{1,robot.Actionjoint(3)}.DHParametes;
+	mem(3).D=c;
+  %只是给定前3个位变量
 	xyz=tmat_in(mem)*tmat_in(mem2)*tmat_in(mem3)*tmat_in(robot.link{1, 5}.DHParametes);
 	eq1=xyz(1,4)==x;
 	eq2=xyz(2,4)==y;
