@@ -16,7 +16,7 @@
 ##The introducment of function
 <pre><code>SetupGui.m SetupUp funtion</code></pre>
 ###View：
-<pre><code>gui.m ：            It decides the  mian layout 
+<pre><code>gui.m ：           It decides the  mian layout 
 gui_init.m :       It set the init value of the joint ,and add evnt to the button</code></pre>
 
 ###Control:

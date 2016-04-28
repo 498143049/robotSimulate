@@ -7,8 +7,8 @@
 	robot.link{1, 5}.DHParametes.theta=t4;
 	robot.link{1, 6}.DHParametes.theta=t5;
 	robot.link{1, 7}.DHParametes.theta=t6;
-	x=-100;y=500;z=800;
-	t1=atan(y/x);
+	%x=-100;y=200;z=500;
+	%t1=atan(y/x);
 	robot.link{1, 2}.DHParametes.theta=t1;
 	x_6=tmat_in(robot.link{1, 2}.DHParametes)*tmat_in(robot.link{1, 3}.DHParametes)*tmat_in(robot.link{1, 4}.DHParametes)*tmat_in(robot.link{1, 5}.DHParametes)*tmat_in(robot.link{1, 6}.DHParametes)*tmat_in(robot.link{1, 7}.DHParametes);
 	x_5=tmat_in(robot.link{1, 2}.DHParametes)*tmat_in(robot.link{1, 3}.DHParametes)*tmat_in(robot.link{1, 4}.DHParametes)*tmat_in(robot.link{1, 5}.DHParametes)*tmat_in(robot.link{1, 6}.DHParametes);

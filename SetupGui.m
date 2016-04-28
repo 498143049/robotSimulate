@@ -1,3 +1,4 @@
+function SetupGui
 % it is the  entrance of program
 %
 % Example:
@@ -9,7 +10,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % log:
 % 2016-04-21: Complete
-function SetupGui
 figure('Name','robot simulink','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
 set(gcf,'menubar','none');
 % add button to load file

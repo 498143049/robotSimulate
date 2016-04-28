@@ -23,24 +23,30 @@ function [A,status]=inverse_kinematics_Abb1200(x,y,z)
 		fai=90;
 	end
 	temp=asind(d1);
-	t2=asind(d1)-fai;       %180-asind(d)-fai   0~180;
-							%查找满足角度的范围  %非单调
+	t2=asind(d1)-fai;
 	t2=180-asin(d1)-fai;
+	       %180-asind(d)-fai   0~180;
+							%查找满足角度的范围  %非单调
+
 	
 	if(t2<0||t2>180)
-		status=0;
-		return;
+		t2=180-asin(d1)-fai;
+		if(t2<0||t2>180)
+			status=0;
+			return;
+		end
 	end
 
 	%保证其中之二的维度
-	d2=((z*cosd(t2)) - (407* m(t2)) - (x*cosd(t1)*sind(t2)) - (y*sind(t1)*sind(t2)))/452;
+	% d2=((z*cosd(t2)) - (407* cosd(t2)) - (x*cosd(t1)*sind(t2)) - (y*sind(t1)*sind(t2)))/452;
+	Temp=(L2-518*cosd(t2))/(L1-518*sind(t2));
+	% d3
+	% if(d2<-1||d2>1)
+	%    status=0;
+	%    return;
+	% end
 
-	if(d2<-1||d2>1)
-	   status=0;
-	   return;
-	end
-
-	t3=-acosd(d2);           %0~-180 这是单调的
+	t3=atand(Temp);           %0~-180 这是单调的
 	A(1)=t1;
     A(2)=t2;
     A(3)=t3;
