@@ -1,0 +1,11 @@
+function F= root2d(t)
+F(1)=452*cos(t(2))*sin(t(3)) - 518*cos(t(2)) + 452*cos(t(3))*sin(t(2)) + (100*cos(t(1)))/(cos(t(1))^2 + sin(t(1))^2) + (200*sin(t(1)))/(cos(t(1))^2 + sin(t(1))^2)
+F(2)=(200*cos(t(1)))/(cos(t(1))^2 + sin(t(1))^2) - (100*sin(t(1)))/(cos(t(1))^2 + sin(t(1))^2)
+F(3)=452*sin(t(2))*sin(t(3)) - 452*cos(t(2))*cos(t(3)) - 518*sin(t(2)) + 93
+F(4)=452*sin(t(3)) + (93*sin(t(2)))/(cos(t(2))^2 + sin(t(2))^2) + (100*cos(t(1))*cos(t(2)))/((cos(t(1))^2 + sin(t(1))^2)*(cos(t(2))^2 + sin(t(2))^2)) + (200*cos(t(2))*sin(t(1)))/((cos(t(1))^2 + sin(t(1))^2)*(cos(t(2))^2 + sin(t(2))^2)) - 518
+F(5)=(93*cos(t(2)))/(cos(t(2))^2 + sin(t(2))^2) - 452*cos(t(3)) - (100*cos(t(1))*sin(t(2)))/((cos(t(1))^2 + sin(t(1))^2)*(cos(t(2))^2 + sin(t(2))^2)) - (200*sin(t(1))*sin(t(2)))/((cos(t(1))^2 + sin(t(1))^2)*(cos(t(2))^2 + sin(t(2))^2))
+F(6)=(100*sin(t(1)))/(cos(t(1))^2 + sin(t(1))^2) - (200*cos(t(1)))/(cos(t(1))^2 + sin(t(1))^2)
+F(7)=(100*cos(t(1))*((cos(t(2))*cos(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) - (sin(t(2))*sin(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2))))/(cos(t(1))^2 + sin(t(1))^2) - (518*cos(t(3)))/(cos(t(3))^2 + sin(t(3))^2) + (200*sin(t(1))*((cos(t(2))*cos(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) - (sin(t(2))*sin(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2))))/(cos(t(1))^2 + sin(t(1))^2) + (93*cos(t(2))*sin(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) + (93*cos(t(3))*sin(t(2)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2))
+F(8)=(518*sin(t(3)))/(cos(t(3))^2 + sin(t(3))^2) - (100*cos(t(1))*((cos(t(2))*sin(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) + (cos(t(3))*sin(t(2)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2))))/(cos(t(1))^2 + sin(t(1))^2) - (200*sin(t(1))*((cos(t(2))*sin(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) + (cos(t(3))*sin(t(2)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2))))/(cos(t(1))^2 + sin(t(1))^2) + (93*cos(t(2))*cos(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) - (93*sin(t(2))*sin(t(3)))/((cos(t(2))^2 + sin(t(2))^2)*(cos(t(3))^2 + sin(t(3))^2)) - 452
+F(9)=(100*sin(t(1)))/(cos(t(1))^2 + sin(t(1))^2) - (200*cos(t(1)))/(cos(t(1))^2 + sin(t(1))^2);
+end
