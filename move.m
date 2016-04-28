@@ -15,7 +15,7 @@ function move(TagetValue,time)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % log:
 % 2016-04-21: Complete
-  global robot
+  global robot;
   TagetValue=VerifyValue(TagetValue);
   arry=ones(robot.ActionjointNum,time);
   for i=1:robot.ActionjointNum
@@ -31,8 +31,8 @@ end
 
 %deal the oldValue and get set Arry
 function ChaneArray(arry)
-  global robot
-  robot.pointarry=[;;]
+  global robot;
+  robot.pointarry=[;;];
   for i=1:length(arry)
   	for j=1:robot.ActionjointNum
      if strcmpi(robot.link{1, robot.Actionjoint(j)}.type,'rotating')  
@@ -49,7 +49,7 @@ function ChaneArray(arry)
  end
 %update the change of graphical
  function  change()
-  global robot
+  global robot;
   handles = getappdata(0,'patch_h'); 
   for i=robot.Actionjoint
     set(handles(i),'vertices',robot.link{1,i}.dot);

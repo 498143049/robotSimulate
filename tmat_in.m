@@ -1,4 +1,16 @@
  function T = tmat_in(Dhparametes)
+% it create  Homogeneous equations by the D-H parametes
+%
+% Example:
+%  tmat_in()
+% it was used for test
+%
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-21: Complete
   c = cos(Dhparametes.theta);
   s = sin(Dhparametes.theta);
   ca = cosd(Dhparametes.alpha);

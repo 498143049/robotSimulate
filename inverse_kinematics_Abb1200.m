@@ -84,7 +84,7 @@ function [A,status]=inverse_kinematics_Abb1200(x,y,z)
 			acd(2*i+j-2,:)=[t1,t2(j),t3(i)];
 		end
 	end 
-	[a,b]=size(acd)
+	[a,b]=size(acd);
 	value=ones(a,3);
 	for i=1:a
 		value(i,1)=518*cosd(acd(i,2)) - x*cosd(acd(i,1))  - y*sind(acd(i,1))-452*sind(acd(i,2) + acd(i,3));
@@ -92,7 +92,7 @@ function [A,status]=inverse_kinematics_Abb1200(x,y,z)
 		value(i,3)=518*sind(acd(i,2)) + 452*cosd(acd(i,2) + acd(i,3))-z+407;
 	end
 	value(find(abs(value)<2))=0;
-	[row, col] = find(value)
+	[row, col] = find(value);
 	rownum= unique(row);
 	for i=rownum
 		acd(i,:)=[];

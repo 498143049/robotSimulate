@@ -10,13 +10,14 @@ function SetupGui
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % log:
 % 2016-04-21: Complete
-figure('Name','robot simulink','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
-set(gcf,'menubar','none');
+figure2=figure('Name','NCU robot simulink', 'NumberTitle', 'off','color',[0.9,0.9,0.9],'Unit','normalized','Position', [ 0.4538   0.4664   0.2031   0.1424]);
+set(figure2,'menubar','none');
+chgicon(figure2,'LOGO.png')
 % add button to load file
-uicontrol(gcf,'Style','pushbutton','Unit','normalized','Position',[0.3 0.3 0.4 0.4],'String','Load data','CallBack',{@Loadfile});
+uicontrol(figure2,'Style','pushbutton','Unit','normalized','Position',[0.3 0.3 0.4 0.4],'String','Load data','CallBack',{@Loadfile});
 function  Loadfile(hObject, ~)
-  global robot
-  global Status  %Button status
+  global robot;
+  global Status;  %Button status
   Status=0;
   [f]=uigetfile('*.json','chose one file');
   robot=loadData(f);

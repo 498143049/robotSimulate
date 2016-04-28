@@ -1,5 +1,16 @@
-
 function init_gui()
+% it init Gui and set the init value to the GUI
+%
+% Example:
+%  init_gui()
+%
+%
+% Email: 498143049@qq.com
+% Website: https://github.com/498143049/robotSimulate
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% log:
+% 2016-04-28: Complete
    global robot;
 
    handles = getappdata(0,'picAxes');
@@ -84,19 +95,6 @@ function UpdatePanle()
   for i=1:3
   	set(KN_editold(i),'String',robot.spoint(i));
   end
-  %test
-  %robot.spoint(2)*cosd(robot.link{1, 2}.DHParametes.theta)-robot.spoint(1)*sind(robot.link{1, 2}.DHParametes.theta)
-  A1=(robot.spoint(1)*cosd(robot.link{1, 2}.DHParametes.theta)+robot.spoint(2)*sind(robot.link{1, 2}.DHParametes.theta));
-  A2=robot.spoint(3)-407;
-  z1=(A1-518*cosd(robot.link{1, 3}.DHParametes.theta))^2+(A2-518*sind(robot.link{1, 3}.DHParametes.theta))^2-452^2
-  z2=A1^2+A2^2+518^2-452^2-2*518*(A1*cosd(robot.link{1, 3}.DHParametes.theta)+A2*sind(robot.link{1, 3}.DHParametes.theta))
-  d1=(518^2+A1^2+A2^2-452^2)/(2*518*sqrt(A2^2+A1^2));
-  fai=atand(A1/A2)
-  temp=asind(d1)
-  % d= (z*cos(t2)) - (407*cos(t2)) - (x*cos(t1)*sin(t2)) - (y*sin(t1)*sin(t2))
-  d2=((robot.spoint(3)*cosd(robot.link{1, 3}.DHParametes.theta)) - (407* cosd(robot.link{1, 3}.DHParametes.theta)) - (robot.spoint(1)*cosd(robot.link{1, 2}.DHParametes.theta)*sind(robot.link{1, 3}.DHParametes.theta)) - (robot.spoint(2)*sind(robot.link{1, 2}.DHParametes.theta)*sind(robot.link{1, 3}.DHParametes.theta)));
-  temp2=452*cosd(robot.link{1, 4}.DHParametes.theta)-d2
-  % z2= 518*cosd(robot.link{1, 3}.DHParametes.theta)-452*sind(robot.link{1, 3}.DHParametes.theta+robot.link{1, 4}.DHParametes.theta)-
 end
 function slider_button_press(~,~)
   t_slider= getappdata(0,'t_slider');

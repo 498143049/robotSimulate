@@ -1,4 +1,3 @@
-
 function gui(num)
 % it set up the mian gui ,it dynamicly sets up a mian GUI denpened on  degree of freedoms    
 % num:the degree of freedoms  

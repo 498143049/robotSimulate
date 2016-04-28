@@ -1,3 +1,4 @@
+function Forward_kinmatics_caculate()
 % it through DH parameter to caculate the set point 
 %
 % Example:
@@ -15,8 +16,7 @@
 %    根据通过robot设置的DH参数。
 %     进行DH的坐标运算
 %     其值应该等于其DH参数，然后乘以自己的移动量
-function Forward_kinmatics_caculate()
-  global robot
+  global robot;
   spoint=[0,0,0,1];  %计算其点
    robot.link{1,1}.dot=robot.link{1,1}.v(:,1:3);
    Told=eye(4);                        %生成单位矩阵
